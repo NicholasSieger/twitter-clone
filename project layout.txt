@@ -1,0 +1,65 @@
+project: twitter clone
+
+features:
+1. allows for anyone to sign up
+2. can post a tweet from any page
+3. timeline showing recent tweets of the people I follow (home page)
+4. profile page for each user (with editability)
+5. profile shows user name, who they're following, recent tweets
+5. like and dislike button for each tweet
+
+page layout:
+
+sign up page -> edit profile -> timeline (profile page) 
+
+search -> search results -> other person's profile page
+
+fundamental object: list of tweets (or persons) 
+(shows up on timeline page and search results
+
+sign up page:
+simple box with entry options for login and signup:
+login:
+    username
+    password
+    submit button
+    if valid: go to timeline page
+    else: error message
+signup:
+    email
+    username
+    password
+    go to timeline page (or search page)
+  
+  
+all of the following pages have a header with the following fields:
+search bar, my timeline button, edit profile button, logout button
+search bar: retains serach term after search entered
+(edit profile might only be shown on my profile but I'll worry 
+about that later)  
+  
+timeline page:
+cotains list of people I'm following, recent tweets
+in list of people I'm following:
+    database query to get people's usernames
+    each name must link to that user's profile page
+in list of recent tweets:
+    database query on followers to get their recent tweets
+    sort by time
+    update every minute? (or update upon post)
+
+search results page:
+list of results or error message
+
+profile page:
+username, who they're following, their recent tweets, 
+follow this person button
+
+
+   
+
+   
+
+
+front end: webpages
+back end: sql database on a server (to be determined)
