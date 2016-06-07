@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<title>
+    Basic webpage look for twitter clone:
+</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main_style.css')}}" >
+</head>
+<html>
+<div class=page>
+    <div class="bar">
+        <h1 class="header"> Twitter Clone</h1>
+        {% if session['username'] %}
+        <a href="{{url_for('timeline',user=session['username'])}}">My Timeline</a>
+        {% endif %}
+        <a href="{{ url_for('logout') }}">log out</a>
+        <form action="" method="POST">
+               <input type=text name=searchterm placeholder=search>
+               <input type=submit name=search value=search>
+        </form>  
+    </div>
+    <div class=body>
+    {% block body %} {% endblock %}
+    </div>
+</div>

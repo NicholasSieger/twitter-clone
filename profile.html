@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+<title>
+    Profile page
+</title>
+
+{% block body %}
+    <div class=side>
+        <div>
+            <p class="header">{{profile}}</p>
+            <p> {{description}}</p>
+        {% if isfollow %}
+            <a href="{{url_for('unfollow',root=session['username'],tip=profile)}}">Unfollow</a>
+        {% else %}
+            <a href="{{url_for('follow',root=session['username'],tip=profile)}}">Follow</a>
+        {% endif %}
+        </div>
+        <div class="following">
+            <h2 class="header">{{profile}} is following</h2>
+            <table>
+                {% for user in following: %}
+                    <tr>
+                        <th><a href="{{url_for('profile',user=user[0]) }}">{{ user[0] }}</a></th>
+                    </tr>
+                {% endfor %}
+            </table> 
+        </div>
+    </div>
+    <div class=content>
+        <div clss=tweetbox>
+            <form action="" method=="POST">
+                <textarea type=text 
+                          name=tweet_text 
+                          placeholder=tweet></textarea>
+                <input type=submit>
+            </form>
+        </div>
+        <h2 class="header">{{profile}}'s tweets</h2>
+        <table >
+            {% for tweet in tweets: %}
+               <tr class="tweet">
+                    <td>
+                        <p id=likes>{{ tweet['likes'] }}</p>
+                        <form action="" method="POST">
+                            <input type=hidden 
+                                   name=id_like 
+                                   value={{ tweet['id'] }}>
+                            <input type=submit
+                                   class=likebutton
+                                   value=like>
+                        </form>
+                        <form action="" method="POST">
+                            <input type=hidden
+                                   name=id_dislike 
+                                   value={{ tweet['id'] }}></output>
+                            <input type=submit
+                                   class=dislikebutton
+                                   value=dislike>
+                        </form>
+                        
+                    </td>
+                    <td>
+                        <p class="header">
+                        {{ tweet['username'] }}
+                        </p><br>
+                        {{ tweet['message'] }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table> 
+    </div>
+{% endblock %}

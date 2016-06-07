@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class='side'>
+        <h2 class="header">People I'm following</h2>
+        <table >
+            {% for user in follows: %}
+                <tr>
+                    <th><a href="{{url_for('profile',user=user[0]) }}">{{ user[0] }}</a></th>
+                </tr>
+            {% endfor %}    
+        </table>
+    </div> 
+    <div class="content">
+        <div class=tweetbox>
+            <form action="" method="POST">
+                <textarea type=text name=tweet_text placeholder=tweet></textarea>
+                <input type=submit name=tweet value=tweet>
+            </form>
+        </div>
+        <div>
+        <h1 class="header"> Recent Activity</h1>
+        <table>
+            {% for tweet in tweets: %}
+                <tr>
+                    <div class=class="tweet">
+                    <td>
+                        <p id=likes>Likes:{{ tweet['likes'] }}</p>
+                        <form action="" method="POST">
+                            <input type=hidden 
+                                   name=id_like 
+                                   value={{ tweet['id'] }}>
+                            <input type=submit
+                                   class=likebutton
+                                   value=like>
+                        </form>
+                        <form action="" method="POST">
+                            <input type=hidden
+                                   name=id_dislike 
+                                   value={{ tweet['id'] }}></output>
+                            <input type=submit
+                                   class=dislikebutton
+                                   value=dislike>
+                        </form>
+                        
+                    </td>
+                    <td>
+                        <p class="header">
+                        {{ tweet['username'] }}
+                        </p><br>
+                        {{ tweet['message'] }}
+                    </td>
+                    </div>
+                </tr>
+            {% endfor %}
+        </table>
+        </div>
+    </div>
+{% endblock %}
+ 

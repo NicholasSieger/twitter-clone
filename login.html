@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="main_style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main_style.css')}}" >
 </head>
 
 <title>
-    Twitter Clone
+    Login page
 </title>
 
 <body>
 
-<div id="login">
-
-
-
+<div class=login>
+    <form action="" method="post">
+        <input type=text name=username placeholder=username></input>
+        <input type=password name=password placeholder=password></input>
+        <input type=submit text=login></input>
+    </form>
+    <a href = {{url_for('new_user')}}>sign up</a>
+    <p> {{msg}} </p>
 </div>
+
 
 </body>
 </html>

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+<title>
+    Search Results
+</title>
+{% block body %}
+        <div class="content">
+        <h1>
+            Search Results for {{ searchterm }}
+        <h2>
+        <table>
+            {% if results %}
+                {% for result in results: %}
+                    <tr>
+                        <a href = "{{ url_for('profile',user=result['username']) }}" >{{result['username']}}</a>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    Sorry, no results found.
+                    {{ results }}
+                </tr>
+             {% endif %}   
+        </table>
+   </div>     
+{% endblock %}
